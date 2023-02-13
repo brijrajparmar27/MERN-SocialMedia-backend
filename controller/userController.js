@@ -43,9 +43,17 @@ const generateJWT = (user) => {
   const token = jwt.sign(
     { _id: user._id, email: user.email },
     process.env.JWT_SECRET,
-    { expiresIn: "3d" }
+    { expiresIn: "1 minutes" }
   );
   return token;
+};
+
+const getAllUser = (req, res) => {
+  User.find().then(data => {
+      res.json(data).status(200);
+  }).catch(err => {
+      res.json({msg: err.msg}).status(500);
+  });
 };
 
 const Signup = async (req, res) => {
@@ -72,4 +80,4 @@ const SignIn = async (req, res) => {
     res.status(500).send({message:err.message})
   }
 }
-module.exports = { Signup, SignIn };
+module.exports = { Signup, SignIn, getAllUser };
