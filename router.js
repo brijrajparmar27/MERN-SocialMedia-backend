@@ -1,9 +1,10 @@
-const { Router } = require('express');
+const { Router } = require("express");
 const RootRouter = Router();
 
-const userRouter = require('./router/user.router');
+const userRouter = require("./router/user.router");
+const fileRouter = require("./router/file.router");
 
-RootRouter.use('/', userRouter);
+RootRouter.use("/", userRouter);
+RootRouter.use("/files", fileRouter);
 
-module.exports = RootRouter;    
-
+module.exports = RootRouter;
