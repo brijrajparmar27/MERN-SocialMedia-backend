@@ -1,10 +1,13 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-
 const app = express();
+
 const cors = require("cors");
 const RootRouter = require("./router");
+const fileUpload = require("express-fileupload");
+
+app.use(fileUpload());
 
 app.use(express.json());
 app.use(
